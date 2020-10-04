@@ -23,7 +23,9 @@ import codeholic.service.JwtUtil;
 import codeholic.service.RedisUtil;
 import codeholic.service.impl.MyUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
+import lombok.extern.java.Log;
 
+@Log
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -52,9 +54,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String refreshUname = null;
         try{
             if(accessJwtHeader != null && accessJwtHeader.startsWith("Bearer ")){
+                accessJwt = accessJwtHeader.substring(7);
                 if(redisUtil.getData(accessJwt) == accessJwt)
                     throw new AlreadyLogoutException();
-                accessJwt = accessJwtHeader.substring(7);
                 username = jwtUtil.getUsername(accessJwt);
             }
             if(username!=null){

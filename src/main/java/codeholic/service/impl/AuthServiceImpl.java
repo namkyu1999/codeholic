@@ -19,11 +19,19 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void signUpUser(Member member) {
+        validateDuplicateMember(member);
         String password = member.getPassword();
         String salt = saltUtil.genSalt();
         member.setSalt(new Salt(salt));
         member.setPassword(saltUtil.encodePassword(salt,password));
         memberRepository.save(member);
+    }
+    // 중복 회원 검증
+    private void validateDuplicateMember(Member member){
+        Member findMember = memberRepository.findByUsername(member.getUsername());
+        if(findMember != null){
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        }
     }
 
     @Override
