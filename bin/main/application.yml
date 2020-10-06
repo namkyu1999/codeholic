@@ -19,3 +19,4 @@ spring:
   redis:
     host: 54.211.158.203
     port: 6379
+openstackDomain: 34.64.180.218 

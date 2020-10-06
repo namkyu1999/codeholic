@@ -7,3 +7,9 @@
 4. signout 시 authorization에 토큰이 없을 경우 에러.... 0
 5. singout 시 이미 로그아웃된 토큰을 사용하는 경우... 프론트에서 헤더 제거
 6. signout 후에도 토큰이 유효함 ... 0
+7. 인증서버연동시, 프로젝트아이디와 역할id는 redis같은데에 저장..안바뀜
+8. 클라이언트에서 signin 할때 X-Subject-Token도 같이 헤더에 넣도록 하게 할것
+
+
+gradle test 방법
+./gradlew test
