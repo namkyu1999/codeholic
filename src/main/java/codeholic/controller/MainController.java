@@ -30,8 +30,5 @@ class MainController{
     public String helloworld2() {   
         return "Only user!!!";
     }
-    @GetMapping("/post")
-    public String postTest(){
-        
-    }
+
 }

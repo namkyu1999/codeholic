@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
@@ -46,6 +48,7 @@ public class OpenStackApiService {
                 + roleId;
     }
 
+    @Transactional
     public void signupProcess(String id, String password) throws IOException {
         // 관리자 계정으로 Authentication post해서 관리자 토큰받기
         String authenticationToken = this.authentication(this.ADMIN_ID, this.ADMIN_PASSWORD);
