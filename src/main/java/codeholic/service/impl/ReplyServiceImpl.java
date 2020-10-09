@@ -1,16 +1,13 @@
 package codeholic.service.impl;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import codeholic.domain.Board;
 import codeholic.domain.Reply;
 import codeholic.repository.ReplyRepository;
 import codeholic.service.BoardService;
@@ -27,29 +24,19 @@ public class ReplyServiceImpl implements ReplyService {
     
     @Override
     public Reply findById(int id) {
-       try{
-            return replyRepository.findById(id).get();
-       }catch(NoSuchElementException e){
-           return null;
-       }
+       return replyRepository.findById(id).get();
     }
 
     @Override
-    public List<Reply> getBoardReplies(Board board,int countPerPage,int currentPage) {
-        try{
-            int boardId = board.getId();
-            Pageable pageable = PageRequest.of(currentPage-1,countPerPage,Sort.by("createdAt").ascending());
-            Page<Reply> page = replyRepository.findReplyByOrderByIdAsc(boardId, pageable);
-            return page.getContent();
-        }catch(NoSuchElementException e){
-            return null;
-        }
+    public List<Reply> getBoardReplies(int board,int countPerPage,int currentPage) {
+        Pageable pageable = PageRequest.of(currentPage-1,countPerPage);
+        Page<Reply> page = replyRepository.findReplyByBoard_idOrderByIdAsc(board, pageable);
+        return page.getContent();
     }
     
 
     @Override
-    public void addReply(Reply reply, Board board) {
-        reply.setBoard(board);
+    public void addReply(Reply reply) {
         replyRepository.save(reply);
     }
 
@@ -60,6 +47,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public void deleteReply(Reply reply) {
+        reply.setBoard(null);
         replyRepository.delete(reply);
     }
 

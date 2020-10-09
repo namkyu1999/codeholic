@@ -1,11 +1,12 @@
 package codeholic.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import codeholic.domain.Member;
 import codeholic.domain.Salt;
 import codeholic.repository.MemberRepository;
 import codeholic.service.AuthService;
-import codeholic.service.OpenStackApiService;
+//import codeholic.service.OpenStackApiService;
 import codeholic.service.SaltUtil;
 import javassist.NotFoundException;
 
@@ -17,10 +18,10 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private SaltUtil saltUtil;
-
+    /*
     @Autowired
     private OpenStackApiService openstackApiService;
-
+    */
     @Override
     public void signUpUser(Member member) {
         validateDuplicateMember(member);

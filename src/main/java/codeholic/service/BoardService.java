@@ -1,6 +1,5 @@
 package codeholic.service;
 
-import java.util.List;
 
 import codeholic.domain.Board;
 import codeholic.domain.response.BoardResponse;

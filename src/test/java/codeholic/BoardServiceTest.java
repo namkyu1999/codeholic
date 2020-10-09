@@ -1,8 +1,5 @@
 package codeholic;
 
-import java.util.List;
-import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -12,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import codeholic.domain.Board;
-import codeholic.domain.Reply;
 import codeholic.service.BoardService;
 import codeholic.service.ReplyService;
 

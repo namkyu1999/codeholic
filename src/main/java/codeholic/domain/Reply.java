@@ -2,7 +2,6 @@ package codeholic.domain;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +45,14 @@ public class Reply {
     private Date updated_at;
     
     //@JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="board_id")
     private Board board;
+
+    public void addRecommend(){
+        this.recommned += 1;
+    }
+    public void adopted(){
+        this.adopted = 1;
+    }
 }
